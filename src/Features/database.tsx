@@ -1,8 +1,8 @@
 import { dataHubType } from "../Types/types";
+import { filteredData } from "./productJSON";
 
 export const initialState:dataHubType = {
   panelView: {
-    // var name database
     sidebarElements: [
       {
         ul: "Add Product",
@@ -37,11 +37,12 @@ export const initialState:dataHubType = {
     ],
     forms: {
       product: [
-        { name: "Name", type: "text", required: true },
-        { name: "Description", type: "textarea", required: true },
-        { name: "Price", type: "number" },
-        { name: "Tags", type: "text", required: true },
-        { name: "Stocks", type: "text" },
+        { name: "title", type: "text", required: true },
+        { name: "description", type: "textarea", required: true },
+        { name: "price", type: "number" },
+        { name: "tags", type: "text", required: true },
+        { name: "stock", type: "text" },
+        { name: "images", type: "text", required: true },
       ],
       order: [
         { name: "Customer_Name", type: "text", required: true },
@@ -53,15 +54,7 @@ export const initialState:dataHubType = {
     },
   },
 
-  products: [
-    {
-      Name: "6565 | 65656",
-      Description: "656",
-      Price: 565,
-      Tags: "65656",
-      Stocks: 565,
-    },
-  ],
+  products: filteredData(),
   placeOrders: [
     {
       Customer_Name: "4564654",
@@ -73,11 +66,13 @@ export const initialState:dataHubType = {
   ],
   users:[
   {  
-    userId: '1',
+    id: '1',
     name: 'jai verma',
+    role:'Admin',
     email: 'jai@gmail.com',
-    password: '2222'
+    password: '2222',
+    cart:[]
   }
-  ]
-
+  ],
+  session:""
 };

@@ -1,16 +1,18 @@
+import { isArray } from 'chart.js/dist/helpers/helpers.core'
 import React from 'react'
-import { MyListProducts, MyPlaceOrder, MyProducts, Mysettings } from '../../MyTypescript'
+import { MyListProducts, MyPlaceOrder, MyProducts, Mysettings } from '../../../Types/MyTypescript'
+import SimpleSlider from '../../Extras/SimpleSlider'
 
-const DataTables = ({ table, state, objKey, setState }: MyListProducts) => {
+const DataTables = ({ table, title ,subTitle ,deletor}: any) => {
    
     // delete list row
-    const deleteThis = (i: number) => {
-        if(Array.isArray(state[objKey])&&objKey!=='settings')
-        state[objKey].splice(i, 1)
-        else if(objKey =='settings')
-        state[objKey]={Default_Price: '1000', Default_Stocks: '400', Default_zip_code: '1233', Default_Title: 'true'}
-        setState({ ...state })
-    }
+    // const deleteThis = (i: number) => {
+    //     if(Array.isArray(table))
+    //     state[objKey].splice(i, 1)
+    //     else if(objKey =='settings')
+    //     state[objKey]={Default_Price: '1000', Default_Stocks: '400', Default_zip_code: '1233', Default_Title: 'true'}
+    //     setState({ ...state })
+    // }
 
     if (!Array.isArray(table)) {
         let obj: any = {}
@@ -26,9 +28,9 @@ const DataTables = ({ table, state, objKey, setState }: MyListProducts) => {
             <div className="card-title p-3 pb-0">
               <div className="d-flex justify-content-between">
                 <p className="card-title fs-5 n-blue">
-                  Recent Sales
+                  {title}
                   <small className="text-secondary mx-1 fs-6">
-                    | Today
+                    {(subTitle)&&' | '+subTitle}
                   </small>{" "}
                 </p>
                 <small className="text-secondary mx-1 fs-6">...</small>
@@ -39,20 +41,30 @@ const DataTables = ({ table, state, objKey, setState }: MyListProducts) => {
             <table className="w-100 table my-2" id="exampleTable" >
                 <thead>
                     <tr>
-                        {(table.length > 0) ? <th>id</th> : <th>No Data Available</th>}
+                        {(table.length < 1)&&<th>No Data Available</th>}
                         {
-                            (table.length > 0) && Object.keys(table[table.length-1]).map(x => <th scope="col">{x.replaceAll('_',' ')}</th>)
+                            (table.length > 0) && Object.keys(table[table.length-1]).map(x => <th scope="col">{x.replaceAll('_', ' ').charAt(0).toUpperCase() + x.replaceAll('_', ' ').slice(1)}</th>)
                         }
-                        {(table.length > 0) && <th>Action</th>}
+                        {(table.length > 0 && deletor) && <th>Action</th>}
                     </tr>
                 </thead>
                 <tbody>
                     {
                         (table.length > 0) && table.map((row: Mysettings|MyProducts|MyPlaceOrder|any, i: number) => {
-                            return <tr><td>{i}</td>{
+                            return <tr>{
 
-                                Object.keys(row).map((val: string) => <td>{row[val]}</td>)
-                            }<td><button className="btn btn-danger btn-sm" onClick={() => deleteThis(i)}><i className="bi bi-trash-fill"></i></button></td>
+                                Object.keys(row).map((val: string) => {
+                                if(Array.isArray(row[val])){
+                               return <td>{(val === 'image'|| val=== 'images')?  <SimpleSlider arr={row[val]}/> :row[val].map((element:string)=><p>{element}</p> )}</td>
+                                }
+                                else
+                                return <td>{row[val]}</td>
+                              })
+                            }
+                            {
+(deletor)&&<td><button className="btn btn-danger btn-sm" onClick={() => deletor(i)}><i className="bi bi-trash-fill"></i></button></td>
+                            
+                            }
                             </tr>
                         })
                     }

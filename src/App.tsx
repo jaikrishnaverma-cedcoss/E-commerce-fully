@@ -1,10 +1,17 @@
-import React from 'react';
-import './App.css';
-import Main from './Components/Main';
+import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import Main from "./Components/Main";
+import { Store } from "./Features/Store";
 
 function App() {
   return (
-<Main/>
+    <Provider store={Store}>
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
+    </Provider>
   );
 }
 

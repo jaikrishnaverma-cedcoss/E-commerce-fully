@@ -1,5 +1,5 @@
 import React from 'react'
-import { MyListProducts, MyPlaceOrder, MyProducts, Mysettings } from '../../MyTypescript'
+import { MyListProducts, MyPlaceOrder, MyProducts, Mysettings } from '../../../Types/MyTypescript'
 
 const ListProducts = ({ table, state, objKey, setState }: MyListProducts) => {
    

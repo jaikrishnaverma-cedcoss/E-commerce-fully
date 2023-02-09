@@ -1,8 +1,10 @@
+
 export type dataHubType = {
-  panelView: panelViewType;
-  products: productsType[];
-  placeOrders: placeOrderType[];
-  users: userTypes[];
+  panelView: panelViewType
+  products: productsType[]
+  placeOrders: placeOrderType[]
+  users: userTypes[]
+  session:userTypes | ''
 };
 
 export type panelViewType = {
@@ -29,11 +31,13 @@ export type formDataType = {
 };
 
 export type productsType = {
-  Name: string;
-  Description: string;
-  Price: number;
-  Tags: string;
-  Stocks: number;
+  id:string  
+  title: string;
+  description: string;
+  price: number;
+  tags: string;
+  stock: number;
+  images:string[]|string
 };
 
 export type placeOrderType = {
@@ -45,8 +49,21 @@ export type placeOrderType = {
 };
 
 export type userTypes = {
-  userId: string;
+  id: string;
   name: string;
+  role:'Admin'|'Manager'|'User',
   email: string;
   password: string;
+  cart:cartTypes[]|[]
 };
+
+export type cartTypes={
+id:number  
+title: string;
+description: string;
+price: number;
+images:string[]|string
+Quantity: number;
+Total:number;
+}
+

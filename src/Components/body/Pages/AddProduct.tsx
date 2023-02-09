@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
-import useSettings from '../../Hooks/useSettings';
-import { MyPlaceOrder, MyProducts } from '../../MyTypescript';
+import useSettings from '../../Hooks/usePrimaryKey';
+import { MyPlaceOrder, MyProducts } from '../../../Types/MyTypescript';
+import { useDispatch, useSelector } from 'react-redux';
+import { pushData } from '../../../Features/Slice';
+import { dataHubType } from '../../../Types/types';
+import usePrimaryKey from '../../Hooks/usePrimaryKey';
 
 type MySetting={
-  bySettings:(el:any)=>MyPlaceOrder|MyProducts
+  keyGenerator:(lists:any)=>string|undefined
 }
-const AddProduct = ({ inputs, state, objKey, setState }: any) => {
+const AddProduct = ({ inputs, objKey }: any) => {
   const [formData, updateFormData] = useState({});
   const [select, setSelect] = useState<boolean>(false)
-
+  const dataHub:dataHubType=useSelector((state:dataHubType)=>state)
+  const dispatch=useDispatch()
   //custom hook to handle default obj values
-  const {bySettings}:MySetting = useSettings(state, objKey)
-
+  const {keyGenerator}:MySetting = usePrimaryKey()
+console.log(keyGenerator(dataHub.products))
   const handleChange: React.ChangeEventHandler<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>= (e) => {
     updateFormData({
       ...formData,
@@ -32,12 +37,8 @@ const AddProduct = ({ inputs, state, objKey, setState }: any) => {
   // object map for check with hook
   const formHandler= (e:React.FormEvent<HTMLFormElement>)=> {
     e.preventDefault();
-    if (objKey == 'settings') {
-      state[objKey] = bySettings(formData)
-    } else {
-      state[objKey].push(bySettings(formData))
-    }
-    setState({ ...state })
+    
+      dispatch(pushData({key:objKey , data:formData}))  
     e.currentTarget.reset()
   }
 
@@ -47,7 +48,7 @@ const AddProduct = ({ inputs, state, objKey, setState }: any) => {
         <div className='d-flex flex-wrap justify-content-between' style={{ maxWidth: '700px' }}>
           {
             inputs.map((x: any, i: number) => <div className="m-1 col-5" style={{ minWidth: '290px' }}>
-              <label htmlFor="exampleInputEmail1" className="form-label">{x.name.replaceAll('_', ' ')}</label>
+              <label htmlFor="exampleInputEmail1" className="form-label">{x.name.replaceAll('_', ' ').charAt(0).toUpperCase() + x.name.replaceAll('_', ' ').slice(1)}</label>
               {(x.type === 'textarea') ?
                 <textarea required={x.required} name={x.name} onChange={handleChange} className="form-control" id={x.name + i} placeholder={`Enter ${x.name}...`} aria-describedby={`about ${x.name} `}></textarea>
                 : (x.type === 'select') ?
