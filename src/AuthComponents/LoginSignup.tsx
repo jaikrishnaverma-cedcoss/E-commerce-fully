@@ -28,7 +28,7 @@ const LoginSignup = () => {
         (x:any) => x.email === email && x.password === password
       );
       if (details.length === 1) {
-        dispatch(setSession({ ...details[0] }));
+        dispatch(setSession(details[0]));
         e.currentTarget.reset();
       } else {
         msg.current!.innerText = "wrnong Username or Password";
@@ -54,11 +54,11 @@ const LoginSignup = () => {
         <div className="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
           <div className="d-flex justify-content-center py-4">
             <a
-              href="index.html"
+              href="#"
               className="logo d-flex align-items-center w-auto"
+              onClick={()=>navigate('/')}
             >
-              <img src="assets/img/logo.png" alt="" />
-              <span className="d-none d-lg-block">NiceAdmin</span>
+              <img src="376-3768060_stark-industries-logo.png" alt="Logo" style={{maxWidth:'200px'}} />
             </a>
           </div>
           <div className="card mb-3">

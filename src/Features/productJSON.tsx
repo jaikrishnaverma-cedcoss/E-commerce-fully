@@ -8,8 +8,12 @@ return {
   description: x.description,
   price: x.price,
   tags: "",
+  brand: x.brand,
   stock: x.stock,
-  images:x.images
+  images:x.images,
+  discountPercentage:x.discountPercentage,
+  rating: x.rating,
+  category: x.category
 }})
 return data
 }

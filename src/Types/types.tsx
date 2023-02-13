@@ -37,7 +37,11 @@ export type productsType = {
   price: number;
   tags: string;
   stock: number;
-  images:string[]|string
+  images:string[]|string;
+  discountPercentage:number,
+  rating: number;
+  brand: string;
+  category: string;
 };
 
 export type placeOrderType = {
@@ -58,7 +62,7 @@ export type userTypes = {
 };
 
 export type cartTypes={
-id:number  
+id:string  
 title: string;
 description: string;
 price: number;

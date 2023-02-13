@@ -46,7 +46,7 @@ const Hero = () => {
       }
     };
   return (
-    <section id="hero-section" className="ag-maecenas_title bg-danger grediant d-flex align-items-center justify-content-center" style={{ minHeight: "50vh" }}>
+    <section id="hero-section" className="ag-maecenas_title grediant d-flex align-items-center justify-content-center" style={{ minHeight: "50vh" }}>
       <p className="prefix-text ">
         Lets Get {" "}
         <span className="typed-text text-warning " ref={span}>

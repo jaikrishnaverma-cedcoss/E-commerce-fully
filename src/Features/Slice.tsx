@@ -21,11 +21,18 @@ const MySlice = createSlice({
     setSession:(state:any,action)=>{
       state.session=action.payload
     },
+    //for  signup 
     addUser:(state,action)=>{
       state.users.push({...action.payload})
+    },
+    addProductInCart:(state:any,action)=>{
+      state.users[action.payload.userIndex].cart.push(action.payload.obj)
+    },
+    updateProductInCart:(state:any,action)=>{
+      state.users[action.payload.userIndex].cart[action.payload.cartIndex].Quantity=action.payload.Quantity;
     }
   },
 });
 
 export default MySlice.reducer;
-export const { setAll, pushData, deleteFunc, setSession, addUser} = MySlice.actions;
+export const {updateProductInCart, addProductInCart, setAll, pushData, deleteFunc, setSession, addUser} = MySlice.actions;

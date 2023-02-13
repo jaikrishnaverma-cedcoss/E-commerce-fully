@@ -1,3 +1,22 @@
+.first-bg { 
+	background: #222831; 
+}
+	
+.second-bg { 
+	background: #2d4059; 
+}
+
+.third-bg { 
+	background: #ff5722; 
+}
+
+.fourth-bg { 
+	background: #eeeeee; 
+}
+.fifth-bg{
+  background: #00a2ff;
+}
+
 /* Nav Section start */
 
 /* Nav Section end */
@@ -36,12 +55,7 @@
     100%  { background-color: #ccc; }
   }
   /* Hero Section end */
-  
-  
-  
-  
-  
-  
+
   .ag-maecenas_title {
     padding: 100px 0;
     background-color: #00a2ff;
@@ -155,6 +169,23 @@
     }
   }
   
-  
-  
+/* filter section css */
+.filter--list{
+  max-height: 400px;
+  overflow-y: scroll;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.filter--list:hover{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+/*  */
+.pricer::first-letter {
+    font-size: 130%;
+    color: #00a2ff;
+  }
+  .pricer{
+    color: #00a2ff !important;
+  }
   

@@ -22,7 +22,7 @@ const DataTables = ({ table, title ,subTitle ,deletor}: any) => {
         table = [obj]
     }
     return (
-        <div  className='d-flex flex-wrap justify-content-center  p-4 tabdiv' >
+        <div  className='d-flex flex-wrap justify-content-center  p-4 tabdiv' style={{minWidth:'70%'}} >
               <div className="col-12  mb-2 pe-md-2">
           <div className="card border-0 shadow-lg mt-2">
             <div className="card-title p-3 pb-0">

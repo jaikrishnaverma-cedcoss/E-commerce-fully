@@ -228,8 +228,8 @@ const Dashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {product.map((x) => (
-                      <tr>
+                    {product.map((x,i) => (
+                      <tr  key={'2'+x.toString()+i}>
                         <th>
                           <img src={x.img} style={{ width: "60px" }} alt="" />
                         </th>
@@ -267,8 +267,8 @@ const Dashboard = () => {
                   "bg-warning",
                   "bg-secondary",
                   "bg-dark",
-                ].map((x) => (
-                  <li className="mine-li border-0 p-0 list-group-item d-flex justify-content-between align-items-start">
+                ].map((x,i) => (
+                  <li  key={i+x.toString()+'5'} className="mine-li border-0 p-0 list-group-item d-flex justify-content-between align-items-start">
                     <small className="greyLight fw-normal my-0 col-2 pe-0 pb-3">
                       32 min
                     </small>
@@ -346,8 +346,9 @@ const Dashboard = () => {
 
             <div className="d-flex justify-content-center">
               <div className="list-group w-100">
-                {product.map((x) => (
+                {product.map((x,i) => (
                   <a
+                  key={'4_'+i+x.toString()}
                     href="#"
                     className="p-0 mb-3 border-0 list-group-item list-group-item-action d-flex justify-content-between"
                     aria-current="true"
