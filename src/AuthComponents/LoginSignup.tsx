@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import usePrimaryKey from "../Components/Hooks/usePrimaryKey";
@@ -16,8 +16,11 @@ const LoginSignup = () => {
   const msg = useRef<HTMLHeadingElement>(null);
   const navigate=useNavigate()
 
-  if(state.session)
+// if Already loggedIn
+useEffect(()=>{
+  if(state.session!='')
   navigate('/Dashboard')
+},[state])
 
 //   handle Submit form
   const AuthHandler = (e: React.FormEvent<HTMLFormElement>) => {

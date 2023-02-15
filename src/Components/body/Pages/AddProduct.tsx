@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import useSettings from '../../Hooks/usePrimaryKey';
-import { MyPlaceOrder, MyProducts } from '../../../Types/MyTypescript';
 import { useDispatch, useSelector } from 'react-redux';
 import { pushData } from '../../../Features/Slice';
 import { dataHubType } from '../../../Types/types';

@@ -1,18 +1,8 @@
 import { isArray } from 'chart.js/dist/helpers/helpers.core'
 import React from 'react'
-import { MyListProducts, MyPlaceOrder, MyProducts, Mysettings } from '../../../Types/MyTypescript'
 import SimpleSlider from '../../Extras/SimpleSlider'
 
-const DataTables = ({ table, title ,subTitle ,deletor}: any) => {
-   
-    // delete list row
-    // const deleteThis = (i: number) => {
-    //     if(Array.isArray(table))
-    //     state[objKey].splice(i, 1)
-    //     else if(objKey =='settings')
-    //     state[objKey]={Default_Price: '1000', Default_Stocks: '400', Default_zip_code: '1233', Default_Title: 'true'}
-    //     setState({ ...state })
-    // }
+const DataTables = ({ table, title ,subTitle ,deletor,counter}: any) => {
 
     if (!Array.isArray(table)) {
         let obj: any = {}
@@ -41,7 +31,7 @@ const DataTables = ({ table, title ,subTitle ,deletor}: any) => {
             <table className="w-100 table my-2" id="exampleTable" >
                 <thead>
                     <tr>
-                        {(table.length < 1)&&<th>No Data Available</th>}
+                        {(table.length < 1)&&<th><img src="cart1.png" style={{maxWidth:'100%'}} alt="" /></th>}
                         {
                             (table.length > 0) && Object.keys(table[table.length-1]).map(x => <th scope="col">{x.replaceAll('_', ' ').charAt(0).toUpperCase() + x.replaceAll('_', ' ').slice(1)}</th>)
                         }
@@ -50,15 +40,25 @@ const DataTables = ({ table, title ,subTitle ,deletor}: any) => {
                 </thead>
                 <tbody>
                     {
-                        (table.length > 0) && table.map((row: Mysettings|MyProducts|MyPlaceOrder|any, i: number) => {
+                        (table.length > 0) && table.map((row: any, i: number) => {
                             return <tr>{
 
                                 Object.keys(row).map((val: string) => {
                                 if(Array.isArray(row[val])){
-                               return <td>{(val === 'image'|| val=== 'images')?  <SimpleSlider arr={row[val]}/> :row[val].map((element:string)=><p>{element}</p> )}</td>
+                               return <td>{
+                                (val === 'image'|| val=== 'images')?  <SimpleSlider arr={row[val]}/>:
+                               row[val].map((element:string)=><p>{element}</p> )}</td>
                                 }
                                 else
-                                return <td>{row[val]}</td>
+                                return (val === 'Quantity')?<td > 
+                                  <div className="capsule w-100 rounded">
+                                  <span  className="d-flex align-items-center justify-content-center">
+                                  <i onClick={()=>counter(i, row,'dec')} className="bi bi-dash-square text-dark  fs-5"></i>
+                                  <span className="mx-1 fs-6" >{row[val]}</span>
+                                  <i onClick={()=>counter(i, row)} className="bi bi-plus-square text-dark fs-5"></i></span>
+                                    </div> 
+                                  </td>
+                                  :<td>{row[val]}</td>
                               })
                             }
                             {
@@ -70,9 +70,6 @@ const DataTables = ({ table, title ,subTitle ,deletor}: any) => {
                     }
                 </tbody>
             </table>
-
-       
-            
               </div>
             </div>
           </div>

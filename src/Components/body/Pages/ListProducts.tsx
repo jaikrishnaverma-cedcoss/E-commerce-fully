@@ -1,7 +1,6 @@
 import React from 'react'
-import { MyListProducts, MyPlaceOrder, MyProducts, Mysettings } from '../../../Types/MyTypescript'
 
-const ListProducts = ({ table, state, objKey, setState }: MyListProducts) => {
+const ListProducts = ({ table, state, objKey, setState }: any) => {
    
     // delete list row
     const deleteThis = (i: number) => {
@@ -33,7 +32,7 @@ const ListProducts = ({ table, state, objKey, setState }: MyListProducts) => {
                 </thead>
                 <tbody>
                     {
-                        (table.length > 0) && table.map((row: Mysettings|MyProducts|MyPlaceOrder|any, i: number) => {
+                        (table.length > 0) && table.map((row: any, i: number) => {
                             return <tr><td>{i}</td>{
 
                                 Object.keys(row).map((val: string) => <td>{row[val]}</td>)

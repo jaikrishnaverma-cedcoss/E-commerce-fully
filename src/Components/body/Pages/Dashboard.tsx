@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { dataHubType } from "../../../Types/types";
 import { MyDoughnutChart } from "../assets/MyDoughnutChart";
 import { MyLineChart } from "../assets/MyLineChart";
 import { MyRadarChart } from "../assets/MyRadarChart";
 import { product } from "./Products";
 const Dashboard = () => {
+  const dataHub=useSelector((state:dataHubType)=>state)
   return (
     <div className="col-12 d-flex flex-wrap justify-content-between">
       <div className="col-12 col-md-8 d-flex flex-wrap align-content-start justify-content-between">

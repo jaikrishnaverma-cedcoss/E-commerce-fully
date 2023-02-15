@@ -1,16 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useProSidebar } from 'react-pro-sidebar';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { setSession } from '../../Features/Slice';
+import { dataHubType } from '../../Types/types';
 type typer={
   collapseSidebar:(collapsed?: boolean | undefined) => void
 }
 const Nav = () => {
   const { collapseSidebar }:typer = useProSidebar();
+  const navigate=useNavigate()
+  const dataHub=useSelector((state:dataHubType)=>state)
+  const dispatch=useDispatch()
+
+useEffect(()=>{
+if(dataHub.session == "")
+  navigate('/auth')
+},[dataHub])
+
   return (
     <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-white" >
       <div className="container-fluid">
-        <a className="navbar-brand me-0 me-sm-2 me-lg-5" href="#">
-          <img src="https://bootstrapmade.com/demo/templates/NiceAdmin/assets/img/logo.png" alt="logo" className='col-6 col-lg-2' />
-          <span className='mx-2 logoName d-none d-lg-inline'>NICE ADMIN</span> </a>
+        <a className="navbar-brand me-0 me-sm-2 me-lg-5" href="#" onClick={()=>navigate('/')}>
+          <img src="376-3768060_stark-industries-logo.png" alt="logo" style={{width:'150px'}} className='col-6 col-lg-2' />
+         </a>
         <i onClick={() => collapseSidebar()} className="bi bi-list fs-1 mx-2 mx-sm-3 n-blue"></i>
         <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i className="bi bi-search n-blue"></i>
@@ -30,7 +43,7 @@ const Nav = () => {
               </a>
               <ul className="dropdown-menu mt-3" aria-labelledby="navbarDropdown">
                 <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
+                <li><a className="dropdown-item bg-danger text-white" href="#">Log Out</a></li>
                 <li><hr className="dropdown-divider" /></li>
                 <li><a className="dropdown-item" href="#"><button className="btn btn-danger btn-sm" onClick={()=>localStorage.removeItem("Prd")}>Clear Local Storage</button></a></li>
               </ul>
@@ -58,9 +71,10 @@ const Nav = () => {
               </a>
               <ul className="dropdown-menu mt-3" aria-labelledby="navbarDropdown">
                 <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
+                <li><a className="dropdown-item" href="#" onClick={()=>localStorage.removeItem("Prd")}>Clear Local Storage</a></li>
                 <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="#"><button className="btn btn-danger btn-sm" onClick={()=>localStorage.removeItem("Prd")}>Clear Local Storage</button></a></li>
+                <li><a className="dropdown-item" href="#" onClick={()=>dispatch(setSession(''))}><button className="btn btn-danger btn-sm col-12">Log Out</button></a></li>
+               
               </ul>
             </li>
           </ul>

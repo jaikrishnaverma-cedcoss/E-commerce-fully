@@ -17,6 +17,23 @@
   background: #00a2ff;
 }
 
+.hover--nav:hover{
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: 0 8px 8px -4px lightblue;
+}
+.hover--nav:active{
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: 0 8px 8px -4px rgb(255, 72, 0);
+}
+
+.product--card:hover{
+    cursor: pointer;
+    box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.2);
+    transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+    transform: scale(1.02);
+}
 /* Nav Section start */
 
 /* Nav Section end */

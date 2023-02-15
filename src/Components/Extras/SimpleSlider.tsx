@@ -4,7 +4,7 @@ export default function SimpleSlider({ arr }: { arr: string[] }) {
 const [count,setCount]=useState(0)
 
   return (
-     <div className="d-flex flex-column align-items-center" style={{ maxWidth: "80px", maxHeight: "80px",  }}>
+     <div className="d-flex flex-column align-items-center" style={{ maxWidth: "80px", maxHeight: "100px",  }}>
           <img
             src={arr[count]}
             style={{ maxWidth: "80px", maxHeight: "80px", marginTop: "5px" }}
